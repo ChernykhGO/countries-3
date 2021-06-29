@@ -11,7 +11,7 @@ const outputRef = document.querySelector('.img-card');
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
 import {success, error} from '@pnotify/core';
-refs.searchForm.addEventListener('input', debounce(onSearch, 700));
+refs.searchForm.addEventListener('input', debounce(onSearch, 1000));
 
 function onSearch (e) {
     // Получаем значение импута и вставляем значение в функцию
@@ -32,11 +32,6 @@ function renderCountryCard(country) {
       if (country.length > 1 && country.length < 11) {
         const markupList = countriesHbs(country);
         refs.cardContainer.innerHTML = markupList;
-        error({
-            title: 'Ok!',
-            text: 'Please enter a more spesific query.',
-            delay: 400,
-          });
           console.log('есть, вводите дальше');
         return;
       }
@@ -58,7 +53,7 @@ function renderCountryCard(country) {
         error({
             title: 'Ok!',
             text: 'Please enter a more spesific query.',
-            delay: 300,
+            delay: 700,
           });
           console.log('вводить дальше');
         return;
@@ -67,11 +62,14 @@ function renderCountryCard(country) {
       const markup = countyCardTpl(country);
       // console.log(markup)
       outputRef.innerHTML = markup;
+      // searchForm.input.value = '';
+      document.getElementById('keyword').value = '';
       success({
           title: 'Success!',
           text: 'That thing that you were trying to do worked.'
         });
         console.log('успех');
+        // refs.searchForm.value.innerHTML = '';
         return
   };
 
@@ -84,7 +82,7 @@ function onFetchError(){
     error({
         title: 'Oh No!',
         text: 'Not Found country!',
-        delay: 300,
+        delay: 500,
       });
       console.log('такой страны не найдено');
       return

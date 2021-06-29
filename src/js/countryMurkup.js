@@ -10,8 +10,10 @@ const outputRef = document.querySelector('.img-card');
 
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
-import {success, error} from '@pnotify/core';
-refs.searchForm.addEventListener('input', debounce(onSearch, 1000));
+import { info, success, error, defaults } from '@pnotify/core';
+refs.searchForm.addEventListener('input', debounce(onSearch, 800));
+
+defaults.delay = 3000;
 
 function onSearch (e) {
     // Получаем значение импута и вставляем значение в функцию
@@ -28,25 +30,12 @@ import countriesHbs from '../templates/countries.hbs';
 
 // Когда промис выполнится с результатом выполняем фунцию, рендерим
 function renderCountryCard(country) {
-
-      if (country.length > 1 && country.length < 11) {
-        const markupList = countriesHbs(country);
-        refs.cardContainer.innerHTML = markupList;
-        error({
-          title: 'Ops!',
-          text: 'Too many results.',
-          delay: 100,
-        });
-          console.log('есть, вводите дальше');
-        return;
-      }
-
       if (country.status === 404) {
         getClear();
         error({
           text: 'Not Found country!',
           addClass: 'error',
-          delay: 300,
+          // delay: 300,
         });
         console.log('ошибка'); 
         return;
@@ -57,16 +46,27 @@ function renderCountryCard(country) {
         error({
             title: 'Ok!',
             text: 'Please enter a more spesific query.',
-            delay: 700,
+            // delay: 700,
           });
           console.log('вводить дальше');
+        return;
+      }
+
+      if (country.length > 1 && country.length < 11) {
+        const markupList = countriesHbs(country);
+        refs.cardContainer.innerHTML = markupList;
+        info({
+          title: 'Ops!',
+          text: 'Too many results.',
+          // delay: 800,
+        });
+          console.log('есть, вводите дальше');
         return;
       }
 
       const markup = countyCardTpl(country);
       // console.log(markup)
       outputRef.innerHTML = markup;
-      // searchForm.input.value = '';
       document.getElementById('keyword').value = '';
       success({
           title: 'Success!',
@@ -86,7 +86,7 @@ function onFetchError(){
     error({
         title: 'Oh No!',
         text: 'Not Found country!',
-        delay: 500,
+        // delay: 500,
       });
       console.log('такой страны не найдено');
       return

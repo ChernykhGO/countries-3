@@ -1,4 +1,4 @@
-// import '../css/style.css'
+import '../css/style.css'
 import countyCardTpl from '../templates/country-cards.hbs'
 import debounce from 'lodash.debounce';
 import API from './fetchCountries';

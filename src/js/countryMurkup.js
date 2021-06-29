@@ -35,7 +35,7 @@ function renderCountryCard(country) {
         error({
             title: 'Ok!',
             text: 'Please enter a more spesific query.',
-            delay: 100,
+            delay: 400,
           });
           console.log('есть, вводите дальше');
         return;
@@ -58,7 +58,7 @@ function renderCountryCard(country) {
         error({
             title: 'Ok!',
             text: 'Please enter a more spesific query.',
-            delay: 10,
+            delay: 300,
           });
           console.log('вводить дальше');
         return;

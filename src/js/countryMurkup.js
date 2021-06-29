@@ -84,6 +84,7 @@ function onFetchError(){
     error({
         title: 'Oh No!',
         text: 'Not Found country!',
+        delay: 300,
       });
       console.log('такой страны не найдено');
       return

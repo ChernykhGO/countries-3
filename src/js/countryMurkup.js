@@ -49,7 +49,6 @@ function renderCountryCard(country) {
 
       if (country.length > 10) {
         getClear();
-        // onFetchError();
         error({
             title: 'Ok!',
             text: 'Please enter a more spesific query.',
@@ -69,7 +68,7 @@ function renderCountryCard(country) {
           text: 'That thing that you were trying to do worked.'
         });
         console.log('успех');
-        // refs.searchForm.value.innerHTML = '';
+    
         return
   };
 

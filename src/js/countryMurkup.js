@@ -55,11 +55,7 @@ function renderCountryCard(country) {
       if (country.length > 1 && country.length < 11) {
         const markupList = countriesHbs(country);
         refs.cardContainer.innerHTML = markupList;
-        info({
-          title: 'Ops!',
-          text: 'Too many results.',
-          // delay: 800,
-        });
+
           console.log('есть, вводите дальше');
         return;
       }
